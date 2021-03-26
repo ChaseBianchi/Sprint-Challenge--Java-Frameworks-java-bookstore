@@ -23,6 +23,9 @@ import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
 
+
+
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = BookstoreApplicationTest.class)
 public class BookServiceImplUnitTestNoDB
@@ -115,6 +118,11 @@ public class BookServiceImplUnitTestNoDB
     @Test
     public void findAll()
     {
+        Mockito.when(bookrepos.findAll())
+                .thenReturn(myBookList);
+
+        assertEquals(5,
+                myBookList.size());
     }
 
     @Test
