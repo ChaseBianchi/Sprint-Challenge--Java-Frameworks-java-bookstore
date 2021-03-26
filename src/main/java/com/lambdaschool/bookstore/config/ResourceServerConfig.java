@@ -50,13 +50,15 @@ public class ResourceServerConfig
                              "/swagger-ui.html",
                              "/v2/api-docs",
                              "/webjars/**",
-                             "/createnewuser")
+                             "/createnewuser", "/books/**")
                 .permitAll()
                 .antMatchers("/users/**",
                              "/useremails/**",
                              "/oauth/revoke-token",
                              "/logout")
                 .authenticated()
+                .antMatchers("/books/**")
+                .hasAnyRole("ADMIN", "USER", "DATA")
                 .antMatchers("/roles/**")
                 .hasAnyRole("ADMIN", "DATA")
                 .anyRequest().denyAll()
